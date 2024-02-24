@@ -1,9 +1,7 @@
 package edu.hogwarts.studentadmin;
 
-import edu.hogwarts.studentadmin.models.House;
-import edu.hogwarts.studentadmin.models.HouseColor;
-import edu.hogwarts.studentadmin.models.Student;
-import edu.hogwarts.studentadmin.models.Teacher;
+import edu.hogwarts.studentadmin.models.*;
+import edu.hogwarts.studentadmin.repositories.CourseRepository;
 import edu.hogwarts.studentadmin.repositories.HouseRepository;
 import edu.hogwarts.studentadmin.repositories.StudentRepository;
 import edu.hogwarts.studentadmin.repositories.TeacherRepository;
@@ -16,7 +14,7 @@ import java.util.List;
 
 @Component
 public class InitData implements CommandLineRunner {
-
+    private CourseRepository courseRepository;
     private StudentRepository studentRepository;
     private TeacherRepository teacherRepository;
     private HouseRepository houseRepository;
@@ -25,10 +23,11 @@ public class InitData implements CommandLineRunner {
     public InitData(){}
 
     @Autowired
-    public InitData(StudentRepository studentRepository, TeacherRepository teacherRepository, HouseRepository houseRepository){
+    public InitData(StudentRepository studentRepository, TeacherRepository teacherRepository, HouseRepository houseRepository,CourseRepository courseRepository){
         this.studentRepository = studentRepository;
         this.teacherRepository = teacherRepository;
         this.houseRepository = houseRepository;
+        this.courseRepository = courseRepository;
 
     }
     public void run(String...args){
@@ -61,15 +60,32 @@ public class InitData implements CommandLineRunner {
                 LocalDate.of(1980, 6, 5),
                 false, 1991, 1998, true, slytherin);
 
+        Student cedricDiggory = new Student("Cedric", "", "Diggory",
+                LocalDate.of(1977, 9, 1),
+                false, 1989, 1996, true, hufflepuff);
+
+        Student lunaLovegood = new Student("Luna", "Lovegood", "",
+                LocalDate.of(1981, 2, 13),
+                false, 1992, 1999, true, ravenclaw);
+
         studentRepository.save(harryPotter);
         studentRepository.save(dracoMalfoy);
+        studentRepository.save(lunaLovegood);
+        studentRepository.save(cedricDiggory);
+
 
         //TEACHERS
         Teacher severusSnape = new Teacher("Severus", "Hilm", "Snape", LocalDate.of(1960, 1, 9),
-                true, EmpType.TENURED, LocalDate.of(1981, 9, 1), null);
+                true, EmpType.TENURED, LocalDate.of(1981, 9, 1), null, slytherin);
 
         teacherRepository.save(severusSnape);
 
+
+        //COURSES
+        Course potionsCourse = new Course(severusSnape, "Potions", 2024, true,
+                List.of(harryPotter, dracoMalfoy, lunaLovegood, cedricDiggory));
+
+        courseRepository.save(potionsCourse);
 
     }
 }

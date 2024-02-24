@@ -17,11 +17,12 @@ public class Teacher {
     private boolean headOfHouse;
     @Enumerated(EnumType.STRING)
     private EmpType employmentType;
-
     private LocalDate employmentStart;
     private LocalDate employmentEnd;
+    @ManyToOne
+    private House house;
 
-    public Teacher(String firstName, String middleName, String lastName, LocalDate dateOfBirth, boolean headOfHouse, EmpType employmentType, LocalDate employmentStart, LocalDate employmentEnd) {
+    public Teacher(String firstName, String middleName, String lastName, LocalDate dateOfBirth, boolean headOfHouse, EmpType employmentType, LocalDate employmentStart, LocalDate employmentEnd, House house) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -30,6 +31,7 @@ public class Teacher {
         this.employmentType = employmentType;
         this.employmentStart = employmentStart;
         this.employmentEnd = employmentEnd;
+        this.house = house;
     }
 
     public Teacher(){
@@ -44,6 +46,7 @@ public class Teacher {
         this.employmentType = otherTeacher.getEmploymentType();
         this.employmentStart = otherTeacher.getEmploymentStart();
         this.employmentEnd = otherTeacher.getEmploymentEnd();
+        this.house = otherTeacher.getHouse();
 
     }
 
@@ -128,6 +131,14 @@ public class Teacher {
 
     public void setEmploymentEnd(LocalDate employmentEnd) {
         this.employmentEnd = employmentEnd;
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
     }
 
     @Override
