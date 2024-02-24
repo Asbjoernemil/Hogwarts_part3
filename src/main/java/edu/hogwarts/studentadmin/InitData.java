@@ -31,7 +31,7 @@ public class InitData implements CommandLineRunner {
 
     }
     public void run(String...args){
-        System.out.println("INITDATA HEYOO");
+        System.out.println("INITDATA HEYO0O");
 
         //HOUSE
         House slytherin = new House("Slytherin","Salazar Slytherin",
