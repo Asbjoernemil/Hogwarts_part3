@@ -1,4 +1,4 @@
-package edu.hogwarts.models;
+package edu.hogwarts.studentadmin.models;
 
 import jakarta.persistence.*;
 
@@ -18,8 +18,7 @@ public class Student {
     private int graduationYear;
     private boolean graduated;
 
-    public Student(int id, String firstName, String middleName, String lastName, LocalDate dateOfBirth, boolean prefect, int enrollmentYear, int graduationYear, boolean graduated) {
-        this.id = id;
+    public Student( String firstName, String middleName, String lastName, LocalDate dateOfBirth, boolean prefect, int enrollmentYear, int graduationYear, boolean graduated) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -32,6 +31,7 @@ public class Student {
 
     public Student() {
     }
+
 
     public int getId() {
         return id;
@@ -103,5 +103,10 @@ public class Student {
 
     public void setGraduated(boolean graduated) {
         this.graduated = graduated;
+    }
+
+    @Override
+    public String toString() {
+        return firstName + middleName + lastName + " ";
     }
 }
