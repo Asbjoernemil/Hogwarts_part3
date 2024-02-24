@@ -17,8 +17,10 @@ public class Student {
     private int enrollmentYear;
     private int graduationYear;
     private boolean graduated;
+    @ManyToOne
+    private House house;
 
-    public Student( String firstName, String middleName, String lastName, LocalDate dateOfBirth, boolean prefect, int enrollmentYear, int graduationYear, boolean graduated) {
+    public Student( String firstName, String middleName, String lastName, LocalDate dateOfBirth, boolean prefect, int enrollmentYear, int graduationYear, boolean graduated,House house) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -27,6 +29,7 @@ public class Student {
         this.enrollmentYear = enrollmentYear;
         this.graduationYear = graduationYear;
         this.graduated = graduated;
+        this.house = house;
     }
 
     public Student() {
@@ -41,6 +44,7 @@ public class Student {
         this.enrollmentYear = otherStudent.getEnrollmentYear();
         this.graduationYear = otherStudent.getGraduationYear();
         this.graduated = otherStudent.isGraduated();
+        this.house = otherStudent.getHouse();
     }
 
     public void copyFrom(Student otherStudent) {
@@ -52,6 +56,7 @@ public class Student {
         this.setEnrollmentYear(otherStudent.getEnrollmentYear());
         this.setGraduationYear(otherStudent.getGraduationYear());
         this.setGraduated(otherStudent.isGraduated());
+        this.setHouse(otherStudent.getHouse());
     }
 
 
@@ -125,6 +130,14 @@ public class Student {
 
     public void setGraduated(boolean graduated) {
         this.graduated = graduated;
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
     }
 
     @Override
