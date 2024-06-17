@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy JAR app to Azure Web App - Deletemenow12
+name: Build and deploy JAR app to Azure Web App - DeleteMeNow12
 
 on:
   push:
@@ -48,15 +48,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_7552DEC5770B4D4F9DB6EFD1F1B9DC49 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_117674DE9E254C9AAB6AAD9E81707FF0 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_217F7A65527C4B668C34EE3A2E1739BC }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_19FC7676CDA04D2FAD707CDFAFA5506A }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_7D9C372EBDBF4E3B86C167119503D1D1 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_0B99D05CCB0D438C9413F4C55F0B4416 }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'Deletemenow12'
+          app-name: 'DeleteMeNow12'
           slot-name: 'Production'
           package: '*.jar'
           
